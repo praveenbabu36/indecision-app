@@ -1,0 +1,25 @@
+.add-option-error {
+    color: rgba(136, 27, 100, 0.856);
+    font-weight: bold;
+    font-style: italic;
+    font-family: Tahoma, sans-serif;
+    padding: 0 $s-size;
+    margin: $m-size;
+}
+
+.add-option {
+    display: flex;
+}
+
+
+.add-option__input {
+    flex-grow: 1;
+    background-color: $dark-blue;
+    color: $off-white;
+    margin-right: $s-size;
+    border: none;
+    border-bottom: 0.3rem solid darken($dark-blue, 10%);
+    margin: $s-size;
+    padding: $s-size;
+}
+

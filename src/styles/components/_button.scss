@@ -1,0 +1,33 @@
+// Big button
+.big-button {
+    background-color: $light-purple;
+    border: none;
+    border-bottom: .6rem solid darken($light-purple, 20%);
+    color: white;
+    font-size: $l-size;
+    font-weight: bold;
+    font-family: Verdana, sans-serif;
+    padding: 2.4rem;
+    width: 100%;
+}
+
+.big-button:disabled {
+    opacity: .5;
+}
+
+// smaller buttons
+.s-button {
+    background-color: $light-purple;
+    border-bottom: .3rem solid darken($light-purple, 20%);
+    border: none;
+    color: white;
+    font-weight: 500;
+    padding: $s-size;
+}
+
+.s-button--link {
+    background: none;
+    border: none;
+    color: $off-white;
+    padding: 0;
+}

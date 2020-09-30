@@ -3,10 +3,12 @@ import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
 import AddOption from "./AddOption";
+import OptionModal from "./OptionModal";
 
 export default class IndecisionApp extends React.Component {
   state = {
     options: [],
+    selectedOption_: undefined
   };
 
   // constructor(props) {
@@ -37,7 +39,6 @@ export default class IndecisionApp extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.options.length != this.state.options.length) {
-      console.log("saving data");
       const json = JSON.stringify(this.state.options);
       localStorage.setItem("options", json);
     }
@@ -55,24 +56,26 @@ export default class IndecisionApp extends React.Component {
       return "Value exists";
     }
 
-    /*
-      this.setState((prevState) => {
-        return {
-          options: prevState.options.concat(option),
-        };
-      });
-      */
-
     this.setState((prevState) => ({
       options: prevState.options.concat(option),
     }));
   };
 
   handlePick = () => {
-    console.log("Select a Option");
     const randomNo = Math.floor(Math.random() * this.state.options.length);
-    alert(this.state.options[randomNo]);
+    const option = this.state.options[randomNo];
+    this.setState( () => ({
+        selectedOption_: option
+      })
+    );
   };
+
+  clearOptionSelected = () => {
+    this.setState( () => ({
+        selectedOption_: undefined
+      })
+    );
+  }
 
   removeOption = (optionToRemove) => {
     console.log("Remove option : ", optionToRemove);
@@ -105,31 +108,42 @@ export default class IndecisionApp extends React.Component {
       <div>
         <Header title={appTitle} subTitle={subTitle} />
         {/* <Header /> */}
-        <Action
-          handlePick={this.handlePick}
-          hasOptions={this.state.options.length > 0}
-        />
-        <Options
-          optionsList={this.state.options}
-          handleReset={this.resetOptions}
-          handleDeleteOption={this.removeOption}
-        />
-        <AddOption handleAdd={this.handleAddOption} />
+
+        <div className="container">
+          <Action
+            handlePick={this.handlePick}
+            hasOptions={this.state.options.length > 0}
+          />
+          <div className="widget">
+              <Options
+                  optionsList={this.state.options}
+                  handleReset={this.resetOptions}
+                  handleDeleteOption={this.removeOption}
+              />
+              <AddOption handleAdd={this.handleAddOption} />
+          </div>
+
+        </div>
+        
+        <OptionModal 
+                selectedOpt={this.state.selectedOption_} 
+                handleClearOption={this.clearOptionSelected}
+                />
       </div>
     );
   }
 }
 
-IndecisionApp.defaultProps = {
-  options: ["Default Item"],
-};
+// IndecisionApp.defaultProps = {
+//   options: ["Default Item"],
+// };
 
-// Stateless functional component
-const User = (props) => {
-  return (
-    <div>
-      <p>Name: {props.name}</p>
-      <p>Age: {props.age}</p>
-    </div>
-  );
-};
+// // Stateless functional component
+// const User = (props) => {
+//   return (
+//     <div>
+//       <p>Name: {props.name}</p>
+//       <p>Age: {props.age}</p>
+//     </div>
+//   );
+// };

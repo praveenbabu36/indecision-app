@@ -1,1 +1,6 @@
 node_modules/
+public/*.js
+public/scripts/
+public/scripts/components/
+public/scripts/playground/
+

@@ -5,20 +5,29 @@ const Options = (props) => {
   const optionsList = props.optionsList;
   return (
     <div>
-      <button id="btnReset" onClick={props.handleReset}>
+    <div className="widget-header">
+      <h3 className="widget-header__title">Your Options</h3>
+      <button id="btnReset" onClick={props.handleReset} className="s-button s-button--link">
         Reset Options
       </button>
-      {optionsList.length === 0 && <p>Please add an Option.</p>}
-
+    </div>
+    <div className="widget-message">
+      {optionsList.length === 0 && <p>Please add an Option to get started.</p>}
+    </div>
+      
+    <div>
       <ol>
-        {optionsList.map((option) => (
+        {optionsList.map((option, index) => (
           <Option
             key={option}
-            optionText={option}
+            optionText={option} 
+            count={index+1}
             handleDeleteOption={props.handleDeleteOption}
           />
         ))}
       </ol>
+    </div>
+
     </div>
   );
 };
