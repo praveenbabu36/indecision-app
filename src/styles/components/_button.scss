@@ -7,8 +7,9 @@
     font-size: $l-size;
     font-weight: bold;
     font-family: Verdana, sans-serif;
-    padding: 2.4rem;
+    padding: $s-size;
     width: 100%;
+    margin-bottom: $s-size;
 }
 
 .big-button:disabled {
@@ -30,4 +31,13 @@
     border: none;
     color: $off-white;
     padding: 0;
+}
+
+// css feature
+@media(min-width: $desktop-breakpoint) {
+    .big-button {
+        margin-bottom: $l-size;
+        padding: $l-size;
+    }
+
 }

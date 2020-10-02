@@ -1,8 +1,8 @@
 .header {
     background-color: $dark-blue;
     color: $off-white;
-    margin-bottom: 2rem;
-    padding: 1.6rem 0;
+    margin-bottom: $s-size;
+    padding: $s-size 0;
 }
 
 // BEM block element modifier
@@ -17,4 +17,13 @@
     font-size: $m-size;
     font-weight: 500;
     margin: 1;
+}
+
+// css feature
+@media(min-width: $desktop-breakpoint) {
+    .header{
+        margin-bottom: $l-size;
+        padding: $m-size 0;
+    }
+
 }
